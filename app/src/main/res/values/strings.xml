@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Simple Web Browser</string>
+    <string name="website_address_hint">Input website address</string>
+    <string name="go">GO</string>
+    <string name="search_string_hint">Input search string</string>
+    <string name="invalid_url_error_message">Invalid website address</string>
+</resources>
