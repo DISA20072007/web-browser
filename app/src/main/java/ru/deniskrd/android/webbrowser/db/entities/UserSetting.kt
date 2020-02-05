@@ -11,31 +11,15 @@ import lombok.NoArgsConstructor;
 @Entity(tableName = "user_settings")
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserSetting {
+class UserSetting(name: String, value : String) {
 
-    public enum Settings { HOME_PAGE }
+    enum class Settings { HOME_PAGE }
 
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "name")
-    private String name;
+    val name : String? = null
 
     @ColumnInfo(name = "value")
-    private String value;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
+    val value : String? = null
 }

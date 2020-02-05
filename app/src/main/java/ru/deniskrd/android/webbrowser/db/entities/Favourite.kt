@@ -11,29 +11,13 @@ import lombok.NoArgsConstructor;
 @Entity(tableName = "favourites")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Favourite {
+class Favourite(name : String, url : String) {
 
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "name")
-    private String name;
+    val name : String? = null
 
     @ColumnInfo(name = "url")
-    private String url;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
+    val url : String? = null
 }
