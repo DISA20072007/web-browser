@@ -1,4 +1,4 @@
-package ru.deniskrd.android.webbrowser.db;
+package ru.deniskrd.android.webbrowser.db
 
 import android.content.Context
 import androidx.room.Database
@@ -18,11 +18,13 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         private var INSTANCE : AppDatabase? = null
 
-        fun getInstance(context: Context) :AppDatabase {
+        fun getInstance(context: Context): AppDatabase? {
             if (INSTANCE == null) {
-                INSTANCE = Room.databaseBuilder(context, AppDatabase::class.java, "app_database").build()
+                synchronized(AppDatabase::class) {
+                    INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "app_database").build()
+                }
             }
-            return INSTANCE as AppDatabase
+            return INSTANCE
         }
     }
 

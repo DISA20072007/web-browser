@@ -1,23 +1,15 @@
-package ru.deniskrd.android.webbrowser.db.entities;
+package ru.deniskrd.android.webbrowser.db.entities
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "favourites")
-@NoArgsConstructor
-@AllArgsConstructor
-class Favourite(name : String, url : String) {
+data class Favourite (
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "name")
-    val name : String? = null
+    val name : String = "",
 
-    @ColumnInfo(name = "url")
     val url : String? = null
-}
+)

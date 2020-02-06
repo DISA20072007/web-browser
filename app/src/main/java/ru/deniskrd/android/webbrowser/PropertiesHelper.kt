@@ -1,6 +1,10 @@
 package ru.deniskrd.android.webbrowser;
 
 import android.content.Context
+import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import ru.deniskrd.android.webbrowser.db.AppDatabase
 import ru.deniskrd.android.webbrowser.db.entities.Favourite
 import ru.deniskrd.android.webbrowser.db.entities.UserSetting

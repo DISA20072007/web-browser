@@ -9,7 +9,7 @@ import android.webkit.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import ru.deniskrd.android.webbrowser.db.entities.UserSetting.Settings.HOME_PAGE
+import ru.deniskrd.android.webbrowser.db.AppConstants.HOME_PAGE
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,9 +66,10 @@ class MainActivity : AppCompatActivity() {
 
         val url = webSiteInput.text.toString()
         if (!URLUtil.isNetworkUrl(url)) {
-            webSiteInput.error = ""
+            webSiteInput.error = resources.getString(R.string.invalid_url_error_message)
+        } else {
+            webView!!.loadUrl(url)
         }
-        webView!!.loadUrl(webSiteInput.text.toString())
     }
 
     fun onClickToolbarButton(view: View) {
@@ -76,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
         when (view.getId()) {
             R.id.home_button -> {
-                val homePageUrl = propertiesHelper!!.userSettings.getProperty(HOME_PAGE.toString())
+                val homePageUrl = propertiesHelper!!.userSettings.getProperty(HOME_PAGE.name)
                 if (homePageUrl != null) {
                     webView!!.loadUrl(homePageUrl)
                     toggleButton.isChecked = true
@@ -142,15 +143,15 @@ class MainActivity : AppCompatActivity() {
         webSettings!!.javaScriptEnabled = true
 
         webView!!.webViewClient = SimpleWebViewClient()
-        webView!!.loadUrl(propertiesHelper!!.userSettings.getProperty(HOME_PAGE.toString()))
+        webView!!.loadUrl(propertiesHelper!!.userSettings.getProperty(HOME_PAGE.name))
     }
 
     private fun addLongClickHandlers() {
         var button : Button = findViewById(R.id.home_button)
         button.setOnLongClickListener { view ->
             val toggleButton = view as ToggleButton
-            if (webView!!.getUrl() != null && !toggleButton.isChecked) {
-                propertiesHelper!!.userSettings.setProperty(HOME_PAGE.toString(), webView!!.url)
+            if (webView!!.url != null && !toggleButton.isChecked) {
+                propertiesHelper!!.userSettings.setProperty(HOME_PAGE.name, webView!!.url)
                 toggleButton.isChecked = true
             }
             true
@@ -186,7 +187,7 @@ class MainActivity : AppCompatActivity() {
             super.onPageStarted(view, url, favicon)
 
             var toggleButton : ToggleButton = findViewById(R.id.home_button)
-            toggleButton.isChecked = (url == propertiesHelper!!.userSettings.getProperty(HOME_PAGE.toString()))
+            toggleButton.isChecked = (url == propertiesHelper!!.userSettings.getProperty(HOME_PAGE.name))
 
             toggleButton = findViewById(R.id.back_button)
             toggleButton.isChecked = webView!!.canGoBack()

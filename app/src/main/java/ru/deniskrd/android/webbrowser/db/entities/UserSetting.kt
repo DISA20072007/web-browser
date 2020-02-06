@@ -1,25 +1,15 @@
-package ru.deniskrd.android.webbrowser.db.entities;
+package ru.deniskrd.android.webbrowser.db.entities
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "user_settings")
-@NoArgsConstructor
-@AllArgsConstructor
-class UserSetting(name: String, value : String) {
-
-    enum class Settings { HOME_PAGE }
+data class UserSetting (
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "name")
-    val name : String? = null
+    val name : String = "",
 
-    @ColumnInfo(name = "value")
     val value : String? = null
-}
+)

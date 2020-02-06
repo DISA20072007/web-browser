@@ -13,7 +13,7 @@ interface UserSettingDao {
     fun getAllUserSettings() : MutableList<UserSetting>
 
     @Query("SELECT value FROM user_settings WHERE name = :name")
-    fun getSettingValue(name :String)
+    fun getSettingValue(name :String) : String
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun setUserSetting(userSetting: UserSetting)
